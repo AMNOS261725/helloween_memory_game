@@ -26,8 +26,11 @@ img {
 .game_container {
   width: 100%;
   max-width: 500px;
-  min-height: 100vh;
+  min-height: 100dvh;
   margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
 }
 
 /*------------------ヘッダー------------------  */
@@ -55,6 +58,10 @@ main {
   background-image: url(../imges/main_cover.png);
   background-repeat: repeat;
   background-size: cover;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .card_area {
