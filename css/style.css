@@ -1,0 +1,195 @@
+@charset "UTF-8";
+
+/* ------------------全体レイアウト------------------ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+header {
+  font-family: "Griffy", system-ui;
+  line-height: 1.7;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+.game_container {
+  width: 100%;
+  max-width: 500px;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+/*------------------ヘッダー------------------  */
+
+.page_header {
+  width: 100%;
+  aspect-ratio: 500/187;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-image: url(../imges/helloween_header_s.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.page_header h1 a {
+  color: #fff;
+}
+
+/*------------------メイン------------------  */
+
+main {
+  background-image: url(../imges/main_cover.png);
+  background-repeat: repeat;
+  background-size: cover;
+}
+
+.card_area {
+  position: relative;
+}
+
+.card_grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 3px;
+  padding: 0.5rem 1rem;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  transform-style: preserve-3d;
+  /* カードをめくるときのくるんと、登場時のふわっと感と */
+  transition:
+    opacity 0.3s ease,
+    transform 0.6s;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 6px;
+  backface-visibility: hidden;
+}
+
+.card_back {
+  z-index: 2;
+}
+
+.card_front {
+  z-index: 1;
+  transform: rotateY(180deg);
+}
+
+.card_is_flipped {
+  transform: rotateY(180deg);
+}
+
+/*------------------ボタン------------------  */
+
+.game_buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  font-family: "Griffy", system-ui;
+}
+
+.game_buttons button {
+  display: inline;
+  width: 8rem;
+  padding: 0.8rem 0;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+#start_button {
+  background-color: #e7943d;
+  color: #fff;
+  border: 3px solid #d9a62e;
+}
+
+#reset_button {
+  background-color: #8a63b8;
+  color: #fff;
+  border: 3px solid #d9a62e;
+}
+
+/*------------------ボタンの機能------------------  */
+
+/* カードの場所は確保したまま見えなくする */
+.card_hidden {
+  opacity: 0;
+}
+
+/*------------------クリアメッセージ------------------  */
+
+#clear_message {
+  /* clearFadeっていうアニメーションを0.8秒かけて動かす */
+  animation: clearFade 0.8s ease;
+
+  width: 600px;
+  max-width: 90vw;
+}
+
+/* アニメーションの動きの指定 */
+@keyframes clearFade {
+  /* スタートは透明 */
+  0% {
+    opacity: 0;
+  }
+
+  /* 終わりは見える */
+  100% {
+    opacity: 1;
+  }
+}
+
+.clear_area {
+  display: none;
+  position: absolute;
+
+  /* クリアの画像の左上をmainのど真ん中に持ってくる */
+  top: 50%;
+  left: 50%;
+  /* 画像の横幅の半分を左へ、高さの半分を上へ */
+  transform: translate(-50%, -50%);
+  /* カードたちよりも前へ */
+  z-index: 10;
+}
+
+.clear_blur {
+  filter: blur(4px);
+}
+
+/*------------------フッター------------------  */
+
+footer {
+  background-color: black;
+  text-align: center;
+}
+
+footer p {
+  color: #fff;
+  font-family: "Griffy", system-ui;
+}
