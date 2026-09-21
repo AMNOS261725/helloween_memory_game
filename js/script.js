@@ -5,6 +5,7 @@ const clearArea = document.getElementById("clear_area");
 const cardGrid = document.getElementsByClassName("card_grid")[0];
 const startButton = document.getElementById("start_button");
 const resetButton = document.getElementById("reset_button");
+const opening = document.getElementsByClassName("opening")[0];
 
 /* 2枚めくったを覚えておくための箱 */
 let firstCard = null;
@@ -18,6 +19,17 @@ let matchedPairs = 0;
 
 /* ゲームがスタートしているか覚えておく箱 */
 let gameStarted = false;
+
+/* --------------------オープニング-------------------- */
+
+/* オープニング画像表示の後、2秒待ってから0.8秒かけてフェードアウト */
+setTimeout(function () {
+  opening.classList.add("opening_fade");
+}, 4000);
+
+setTimeout(function () {
+  opening.style.display = "none";
+}, 4800);
 
 /* --------------------カードを隠す-------------------- */
 for (let i = 0; i < cards.length; i++) {
