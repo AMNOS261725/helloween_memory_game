@@ -59,7 +59,7 @@ startButton.addEventListener("click", function () {
 /* RESETボタンが押されたら{}の処理を実行する */
 resetButton.addEventListener("click", function () {
   /* RESETボタン押したらカード触れない */
-  gameStarted = false;
+  gameStarted = true;
   /* 2枚覚えていた箱の中を空っぽに */
   firstCard = null;
   secondCard = null;
@@ -69,9 +69,11 @@ resetButton.addEventListener("click", function () {
   /* 18枚裏向きになる */
   for (let i = 0; i < cards.length; i++) {
     cards[i].classList.remove("card_is_flipped");
-    /* カードそのものを隠す */
-    cards[i].classList.add("card_hidden");
+
+    /* 揃ってクリックできなくなっていたカードを元に戻す */
+    cards[i].style.pointerEvents = "auto";
   }
+
   /* シャッフル */
   shuffleCards();
 
@@ -151,6 +153,10 @@ isCheckingがtrueのときカードはめくれない */
       /* 1枚目と2枚目が同じかみる */
       if (firstCard.dataset.card === secondCard.dataset.card) {
         console.log("あたり");
+
+        /* そろったカードは触れないようにする */
+        firstCard.style.pointerEvents = "none";
+        secondCard.style.pointerEvents = "none";
 
         /* matchedPairsの数字をあたりの度1増やす */
         matchedPairs++;
